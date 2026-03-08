@@ -29,6 +29,21 @@ ui <- page_navbar(
       
       gt::gt_output("myTable")
     )
+  ),
+  card(
+    card_header("Crime rates by Crime"),
+    card_body(
+      selectizeInput( 
+        "selectCrime", 
+        "Select options below:", 
+        list("Murder", "Assault", "UrbanPop", "Rape"), 
+        multiple = FALSE
+      ),
+      
+      plotOutput("plot", fill = TRUE)
+    ),
+    fillable = TRUE,
+    full_screen = TRUE
   )
   )
 
