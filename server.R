@@ -16,10 +16,15 @@ server <- function(input, output){
   # you will put your interactions here
   
   
-  
   output$myTable <- gt::render_gt({
+
+    if(is.null(input$select)){
+      filtered <- arrestByState
+    } else {
+      filtered <- arrestByState %>%
+        filter(state %in% input$select) }
     
-    arrestByState %>%
+     filtered %>%
       gt() %>%
       cols_label(state ~ "State", 
                  murder ~ "Murder",
